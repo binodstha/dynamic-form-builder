@@ -52,10 +52,10 @@ An intuitive, interactive dynamic form builder built with React 19, TypeScript, 
 
 ```bash
 # Clone the repository
-git clone git@github.com:binodstha/configurable-form-builder.git
+git clone git@github.com:binodstha/dynamic-form-builder.git
 
 # Navigate into project directory
-cd configurable-form-builder
+cd dynamic-form-builder
 
 # Install dependencies
 pnpm install
