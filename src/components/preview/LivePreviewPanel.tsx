@@ -46,7 +46,6 @@ export const LivePreviewPanel: React.FC = () => {
       <div className="preview-header">
         <div className="preview-header-left">
           <div className="preview-badge-live">
-            <span className="dot pulse green" />
             <EyeIcon size={15} />
             <span>Live Preview</span>
           </div>

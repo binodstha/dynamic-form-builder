@@ -12,6 +12,17 @@ export interface ConfigurableFormBuilderProps {
   initialConfig?: FormConfig;
 }
 
+interface NavViewType {
+  type: "both" | "builder" | "preview";
+  label: string;
+}
+
+const navViewType: NavViewType[] = [
+  { type: "both", label: "Split View" },
+  { type: "builder", label: "Builder" },
+  { type: "preview", label: "Preview" },
+]
+
 const BuilderInner: React.FC = () => {
   const { config } = useFormBuilder();
   const [isExportOpen, setIsExportOpen] = useState(false);
@@ -27,38 +38,25 @@ const BuilderInner: React.FC = () => {
             <CodeIcon size={18} />
           </div>
           <div className="brand-info">
-            <h1 className="brand-title">ConfigurableFormBuilder</h1>
+            <h1 className="brand-title">Configurable Form Builder</h1>
             <span className="brand-badge">Schema-Driven Dynamic Forms</span>
           </div>
         </div>
 
         {/* View Switcher for responsive & tablet screens */}
         <div className="view-switcher">
-          <button
-            type="button"
-            className={`view-tab ${activeTab === 'both' ? 'active' : ''}`}
-            onClick={() => setActiveTab('both')}
-            title="Split view (Builder + Preview)"
+          {navViewType.map(({ type, label }) => (
+             <button
+              key={type}
+              type="button"
+              className={`view-tab ${activeTab === type ? 'active' : ''}`}
+              onClick={() => setActiveTab(type)}
+              title={label}
           >
-            Split View
+            {type === 'preview' && <EyeIcon size={14} />}
+             {label}
           </button>
-          <button
-            type="button"
-            className={`view-tab ${activeTab === 'builder' ? 'active' : ''}`}
-            onClick={() => setActiveTab('builder')}
-            title="Builder only"
-          >
-            Builder
-          </button>
-          <button
-            type="button"
-            className={`view-tab ${activeTab === 'preview' ? 'active' : ''}`}
-            onClick={() => setActiveTab('preview')}
-            title="Live Preview only"
-          >
-            <EyeIcon size={14} />
-            <span>Preview</span>
-          </button>
+          ))}
         </div>
 
         {/* Top actions: Export / Import */}
